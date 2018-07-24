@@ -59,4 +59,25 @@ public:
 private:
 	map<eCubeType, cubeUnit> _cubeMgr;
 
+//-------------------
+//Singleton
+//-------------------
+private:
+	cubeMgr()
+	{
+	};
+	~cubeMgr()
+	{
+		cubeMgr::Destroy();
+	}
+	cubeMgr(cubeMgr const&);
+	void operator=(cubeMgr const&);
+
+public:
+	static cubeMgr* GetInstance();
+	static void Destroy();
+
+private:
+	static cubeMgr *pInstance;
+
 };

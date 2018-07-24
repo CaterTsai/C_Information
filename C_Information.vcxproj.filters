@@ -163,6 +163,39 @@
     <ClCompile Include="src\senderMgr.cpp">
       <Filter>src\senderMgr</Filter>
     </ClCompile>
+    <ClCompile Include="src\cubeMgr.cpp">
+      <Filter>src\cube</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ctrlMap.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\midiCtrl.cpp">
+      <Filter>src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMidi\src\ofxBaseMidi.cpp">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMidi\src\ofxMidi.cpp">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMidi\src\ofxMidiIn.cpp">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMidi\src\ofxMidiMessage.cpp">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMidi\src\ofxMidiOut.cpp">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMidi\src\desktop\ofxRtMidiIn.cpp">
+      <Filter>addons\ofxMidi\src\desktop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMidi\src\desktop\ofxRtMidiOut.cpp">
+      <Filter>addons\ofxMidi\src\desktop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMidi\libs\rtmidi\RtMidi.cpp">
+      <Filter>addons\ofxMidi\libs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -224,6 +257,27 @@
     </Filter>
     <Filter Include="src\senderMgr">
       <UniqueIdentifier>{ef7347f9-9ffc-416c-a54c-842f69633581}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\control">
+      <UniqueIdentifier>{cb6e44f7-e119-4f42-836c-83b56fab0617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMidi">
+      <UniqueIdentifier>{d4b2149e-82f0-4dc0-b545-822d161da6b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMidi\libs">
+      <UniqueIdentifier>{7133787d-b144-41e6-8c4c-c90446b603be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMidi\src">
+      <UniqueIdentifier>{3f251e3b-c717-4645-aa59-95def52f58c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMidi\src\desktop">
+      <UniqueIdentifier>{9ee816b2-2cd7-499f-b983-12e87dcd71dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sceneMgr">
+      <UniqueIdentifier>{986c8db1-6ff1-4420-aafe-1b8ea8004d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sceneMgr\scene">
+      <UniqueIdentifier>{93454a92-9f07-4d00-adef-51867d19c4d1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -430,6 +484,72 @@
     </ClInclude>
     <ClInclude Include="src\colorUnit.h">
       <Filter>src\cube</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\sceneMgr.h">
+      <Filter>src\sceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ctrlMap.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\midiCtrl.h">
+      <Filter>src\control</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMidi\src\ofxBaseMidi.h">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidi.h">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidiConstants.h">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidiIn.h">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidiMessage.h">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidiOut.h">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidiTypes.h">
+      <Filter>addons\ofxMidi\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMidi\src\desktop\ofxRtMidiIn.h">
+      <Filter>addons\ofxMidi\src\desktop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMidi\src\desktop\ofxRtMidiOut.h">
+      <Filter>addons\ofxMidi\src\desktop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMidi\libs\rtmidi\RtMidi.h">
+      <Filter>addons\ofxMidi\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\sBase.h">
+      <Filter>src\sceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\sType.h">
+      <Filter>src\sceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\sIdle.h">
+      <Filter>src\sceneMgr\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\sIntro.h">
+      <Filter>src\sceneMgr\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\sSimple.h">
+      <Filter>src\sceneMgr\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\sHarmony.h">
+      <Filter>src\sceneMgr\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\sChaos.h">
+      <Filter>src\sceneMgr\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\sToBeContinued.h">
+      <Filter>src\sceneMgr\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\sEnding.h">
+      <Filter>src\sceneMgr\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

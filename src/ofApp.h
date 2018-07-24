@@ -25,9 +25,6 @@ public:
 #pragma region CubeMgr
 public:
 	void initCubeMgr();
-	void drawCubeMgr();
-private:
-	cubeMgr _cubeMgr;
 #pragma endregion
 
 	
