@@ -1,0 +1,5 @@
+ofxAnimatable
+ofxDSHapVideoPlayer
+ofxNetwork
+ofxTrueTypeFontUC
+ofxXmlSettings
