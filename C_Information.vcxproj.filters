@@ -196,6 +196,9 @@
     <ClCompile Include="..\..\..\addons\ofxMidi\libs\rtmidi\RtMidi.cpp">
       <Filter>addons\ofxMidi\libs</Filter>
     </ClCompile>
+    <ClCompile Include="src\lightMesh.cpp">
+      <Filter>src\lightMesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -278,6 +281,9 @@
     </Filter>
     <Filter Include="src\sceneMgr\scene">
       <UniqueIdentifier>{93454a92-9f07-4d00-adef-51867d19c4d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\lightMesh">
+      <UniqueIdentifier>{94e99169-7d7a-47da-b42c-370c2ca9e128}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -550,6 +556,9 @@
     </ClInclude>
     <ClInclude Include="src\scene\sEnding.h">
       <Filter>src\sceneMgr\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lightMesh.h">
+      <Filter>src\lightMesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

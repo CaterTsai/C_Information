@@ -6,7 +6,6 @@
 class cubeMgr
 {
 public:
-	cubeMgr(){}
 
 	void add(eCubeType type, int size, ofVec3f pos, ofColor c1, ofColor c2, ofColor c3)
 	{

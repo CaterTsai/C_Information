@@ -5,9 +5,10 @@ void ofApp::setup(){
 
 	ofBackground(0);
 	ofSetFrameRate(60);
-
-	initCubeMgr();
-	initSenderMgr();
+	ofSetWindowPosition(0, 0);
+	//initCubeMgr();
+	//initSenderMgr();
+	initLightMesh();
 
 	_mainTimer = ofGetElapsedTimef();
 }
@@ -24,15 +25,32 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-	_cam.begin();
-	cubeMgr::GetInstance()->draw();
-	_cam.end();
+	//_cam.begin();
+	//cubeMgr::GetInstance()->draw();
+	//_cam.end();
+
+	_lightMesh.drawLight(0, 0);
+	_lightMesh.drawPoint(0, 0);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 
-	
+	switch (key)
+	{
+	case 'e':
+	{
+		//Edit Mode
+		_lightMesh.editMode();
+		break;
+	}
+	case 't':
+	{
+		auto r = _lightMesh.getPath(24, 7);
+		
+		break;
+	}
+	}
 }
 
 //--------------------------------------------------------------
@@ -83,5 +101,10 @@ void ofApp::initCubeMgr()
 		ofColor(255, 255, 0),
 		ofColor(255, 0, 255)
 	);
+}
+
+void ofApp::initLightMesh()
+{
+	_lightMesh.init(1920, 900, 8, 4);
 }
 

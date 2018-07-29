@@ -181,6 +181,7 @@
     <ClCompile Include="..\..\..\addons\ofxMidi\src\ofxMidiOut.cpp" />
     <ClCompile Include="src\ctrlMap.cpp" />
     <ClCompile Include="src\cubeMgr.cpp" />
+    <ClCompile Include="src\lightMesh.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\midiCtrl.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -253,6 +254,7 @@
     <ClInclude Include="src\ctrlMap.h" />
     <ClInclude Include="src\cubeMgr.h" />
     <ClInclude Include="src\cubeUnit.h" />
+    <ClInclude Include="src\lightMesh.h" />
     <ClInclude Include="src\midiCtrl.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatable.h" />

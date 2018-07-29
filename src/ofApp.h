@@ -2,6 +2,7 @@
 
 #include "constParameter.h"
 #include "cubeMgr.h"
+#include "lightMesh.h"
 
 class ofApp : public ofBaseApp{
 
@@ -27,5 +28,11 @@ public:
 	void initCubeMgr();
 #pragma endregion
 
-	
+#pragma region lightMesh
+public:
+	void initLightMesh();
+private:
+	lightMesh _lightMesh;
+#pragma endregion
+
 };
