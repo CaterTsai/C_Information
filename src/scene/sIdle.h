@@ -14,7 +14,7 @@ public:
 
 	void start() override
 	{
-		cubeMgr::GetInstance()->chagneColorType(eCube)
+		cubeMgr::GetInstance()->chagneColorType(eCubeOne, 0, eColorType::eCT_BreatheMiddle, false);
 	};
 	void stop() override {};
 	void control(eCtrlType ctrl, int value = cMidiButtonPress) override {};

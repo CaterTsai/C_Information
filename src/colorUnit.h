@@ -23,11 +23,12 @@ enum eColorType
 	eCT_BreatheSlow,
 	eCT_BreatheMiddle,
 	eCT_BreatheFast,
+	eCT_BreatheControl,
 
 	eCT_FlashSlow,
 	eCT_FlashFast,
-
-	eCT_Control
+	eCT_FlashControl
+	
 };
 
 class colorUnit {
@@ -36,6 +37,7 @@ public:
 		:_baseColor(255)
 		, _intensity(0)
 		, _eType(eCT_Off)
+		, _isLoop(false)
 	{}
 	colorUnit(ofColor c)
 		:_baseColor(c)
@@ -50,21 +52,31 @@ public:
 		if (_eType == eCT_BreatheSlow || _eType == eCT_BreatheMiddle || _eType == eCT_BreatheFast)
 		{
 			_intensity = _animIntensity.getCurrentValue();
+
+			if (_animIntensity.hasFinishedAnimating() && !_isLoop)
+			{
+				_eType = eCT_Off;
+			}
 		}		
 		else if (_eType == eCT_FlashSlow || _eType == eCT_FlashFast)
 		{
 			_timer -= delta;
-			if (_timer < 0.0f)
+			if (_timer < 0.0f )
 			{
 				_intensity = (_intensity == 0 ? 255 : 0);
+				if (!_isLoop && _intensity == 0)
+				{
+					_eType = eCT_Off;
+				}
 				_timer = _flashTime;
 			}
 		}
 	}
 
-	void setColorType(eColorType type)
+	void setColorType(eColorType type, bool isLoop, float t)
 	{
 		_eType = type;
+		_isLoop = isLoop;
 		switch (_eType)
 		{
 		case eCT_Off:
@@ -92,7 +104,15 @@ public:
 			_intensity = 0;
 			_animIntensity.reset(0.0f);
 			_animIntensity.setDuration(cColorBreatheSlow);
-			_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
+			if (_isLoop)
+			{
+				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
+			}
+			else
+			{
+				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH_ONCE);
+			}
+			
 			_animIntensity.animateFromTo(0.0, 255);
 			break;
 		}
@@ -101,7 +121,14 @@ public:
 			_intensity = 0;
 			_animIntensity.reset(0.0f);
 			_animIntensity.setDuration(cColorBreatheMiddle);
-			_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
+			if (_isLoop)
+			{
+				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
+			}
+			else
+			{
+				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH_ONCE);
+			}
 			_animIntensity.animateFromTo(0.0, 255);
 			break;
 		}
@@ -110,10 +137,18 @@ public:
 			_intensity = 0;
 			_animIntensity.reset(0.0f);
 			_animIntensity.setDuration(cColorBreatheFast);
-			_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
+			if (_isLoop)
+			{
+				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
+			}
+			else
+			{
+				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH_ONCE);
+			}
 			_animIntensity.animateFromTo(0.0, 255);
 			break;
 		}
+		
 		case eCT_FlashSlow:
 		{
 			_intensity = 0;
@@ -155,6 +190,7 @@ public:
 
 
 public:
+	bool _isLoop;
 	eColorType	_eType;
 	ofColor _baseColor;
 	float _timer, _flashTime;

@@ -30,11 +30,11 @@ public:
 		ofPopStyle();
 	}
 
-	void chagneColorType(eCubeType cType, int id, eColorType colorType)
+	void chagneColorType(eCubeType cType, int id, eColorType colorType, bool isLoop = true)
 	{
 		if (_cubeMgr.find(cType) != _cubeMgr.end())
 		{
-			_cubeMgr[cType].setType(id, colorType);
+			_cubeMgr[cType].setType(id, colorType, isLoop);
 		}
 	}
 
