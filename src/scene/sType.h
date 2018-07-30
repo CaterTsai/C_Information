@@ -9,5 +9,5 @@ enum eSType : int
 	,eSChaos
 	,eSToBeContinued
 	,eSEnding
-	,eSNum
+	,eSTypeNum
 };

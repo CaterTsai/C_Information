@@ -10,7 +10,6 @@ public:
 	{}
 
 	void update(float delta) override {}
-	virtual void draw() override {};
 	virtual void drawMsg(ofVec2f pos) override {}
 
 	virtual void start() override {};

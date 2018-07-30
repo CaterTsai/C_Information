@@ -10,10 +10,12 @@ public:
 	{}
 
 	void update(float delta) override {}
-	virtual void draw() override {};
-	virtual void drawMsg(ofVec2f pos) override {}
+	void drawMsg(ofVec2f pos) override {}
 
-	virtual void start() override {};
-	virtual void stop() override {};
-	virtual void control(eCtrlType ctrl, int value = cMidiButtonPress) override {};
+	void start() override
+	{
+		cubeMgr::GetInstance()->chagneColorType(eCube)
+	};
+	void stop() override {};
+	void control(eCtrlType ctrl, int value = cMidiButtonPress) override {};
 };

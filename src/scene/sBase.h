@@ -5,7 +5,7 @@
 #include "../midiCtrl.h"
 #include "../ctrlMap.h"
 #include "sType.h"
-
+#include "cubeMgr.h"
 
 class sBase
 {
