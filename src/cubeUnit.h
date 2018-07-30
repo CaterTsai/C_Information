@@ -46,11 +46,11 @@ public:
 		ofPopStyle();
 		ofPopMatrix();
 	}
-	void setType(int id, eColorType type, bool isLoop)
+	void setType(int id, eColorType type, bool isLoop, float t)
 	{
 		if (id >= 0 && id < _colorList.size())
 		{
-			_colorList[id].setColorType(type, isLoop);
+			_colorList[id].setColorType(type, isLoop, t);
 		}
 	}
 	void setIntensity(int id, int value)

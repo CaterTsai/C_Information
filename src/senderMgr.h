@@ -30,7 +30,6 @@ public:
 		msg[1] = c2;
 		msg[2] = c3;
 		msg[3] = cUdpSendEnd;
-		cout << "Send:" << c1 << " " << c2 << " " << c3 << ";"<< endl;
 		_udp.Send(msg, cUdpSendLength);
 		
 		_canSend = false;
@@ -73,31 +72,49 @@ public:
 	{
 		_senderMgr.insert(make_pair(type, senderUnit()));
 		_senderMgr[type].init(ip, port);
+		
+		array<int, cColorNumEachUnit> color = { 0 };
+		_dataCheckr.insert(make_pair(type, color));
+
 	}
 
-	bool send(eCubeType type, array<int, cColorNumEachUnit> &data)
+	void send(eCubeType type, array<int, cColorNumEachUnit> &data)
 	{
 
 		if (_senderMgr.find(type) != _senderMgr.end())
 		{
-			return _senderMgr[type].send(data[0], data[1], data[2]);
+			bool isSame = true;
+			for (int i = 0; i < cColorNumEachUnit; i++)
+			{
+				if (data[i] != _dataCheckr[type][i])
+				{
+					_dataCheckr[type][i] = data[i];
+					isSame = false;
+				}
+			}
+
+			if (!isSame)
+			{
+				_senderMgr[type].send(data[0], data[1], data[2]);
+			}
 		}
 		else
 		{
 			ofLog(OF_LOG_ERROR, "[senderMgr::send]Can't found sender");
-			return false;
+			
 		}
 	}
 
 private:
 	map<eCubeType, senderUnit> _senderMgr;
-
+	map<eCubeType, array<int, cColorNumEachUnit>> _dataCheckr;
 //-------------------
 //Singleton
 //-------------------
 private:
 	senderMgr()
 	{
+		
 	};
 	~senderMgr()
 	{

@@ -3,7 +3,7 @@
 
 #include "ofMain.h"
 
-enum eCubeType
+enum eCubeType : int
 {
 	eCubeOne = 0,
 	eCubeTwo, 

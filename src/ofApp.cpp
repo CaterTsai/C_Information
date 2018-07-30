@@ -7,7 +7,7 @@ void ofApp::setup() {
 	ofSetFrameRate(60);
 	ofSetWindowPosition(0, 0);
 	initCubeMgr();
-	//initSenderMgr();
+	initSenderMgr();
 	initLightMesh();
 	initScene();
 	_mainTimer = ofGetElapsedTimef();

@@ -49,7 +49,7 @@ public:
 	{
 		_animIntensity.update(delta);
 
-		if (_eType == eCT_BreatheSlow || _eType == eCT_BreatheMiddle || _eType == eCT_BreatheFast)
+		if (_eType == eCT_BreatheSlow || _eType == eCT_BreatheMiddle || _eType == eCT_BreatheFast || _eType == eCT_BreatheControl)
 		{
 			_intensity = _animIntensity.getCurrentValue();
 
@@ -58,7 +58,7 @@ public:
 				_eType = eCT_Off;
 			}
 		}		
-		else if (_eType == eCT_FlashSlow || _eType == eCT_FlashFast)
+		else if (_eType == eCT_FlashSlow || _eType == eCT_FlashFast || _eType == eCT_FlashControl)
 		{
 			_timer -= delta;
 			if (_timer < 0.0f )
@@ -148,7 +148,22 @@ public:
 			_animIntensity.animateFromTo(0.0, 255);
 			break;
 		}
-		
+		case eCT_BreatheControl:
+		{
+			_intensity = 0;
+			_animIntensity.reset(0.0f);
+			_animIntensity.setDuration(t);
+			if (_isLoop)
+			{
+				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
+			}
+			else
+			{
+				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH_ONCE);
+			}
+			_animIntensity.animateFromTo(0.0, 255);
+			break;
+		}
 		case eCT_FlashSlow:
 		{
 			_intensity = 0;
@@ -161,8 +176,10 @@ public:
 			_timer = _flashTime = cColorFlashFast;
 			break;
 		}
-		case eCT_Control:
+		case eCT_FlashControl:
 		{
+			_intensity = 0;
+			_timer = _flashTime = t;
 			break;
 		}
 		}

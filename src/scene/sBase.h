@@ -12,6 +12,7 @@ class sBase
 public:
 	sBase(eSType type):
 		_type(type)
+		, _isStart(false)
 	{}
 
 	virtual void update(float delta) {}
@@ -22,7 +23,7 @@ public:
 	virtual void stop() {};
 	virtual void control(eCtrlType ctrl, int value = cMidiButtonPress) {};
 
-private:
+protected:
 	eSType _type;
-	
+	bool _isStart;
 };
