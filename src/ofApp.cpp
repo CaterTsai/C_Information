@@ -34,6 +34,14 @@ void ofApp::draw() {
 
 	//_lightMesh.drawLight(0, 0);
 	//_lightMesh.drawPoint(0, 0);
+
+	if (_showMsg)
+	{
+		ofSetColor(255);
+		string state = +_isStart ? "Play" : "Stop";
+		ofDrawBitmapStringHighlight("State :" + state, ofVec2f(0, 95));
+		_sceneMgr[_nowScene]->drawMsg(ofVec2f(0, 110));
+	}
 }
 
 //--------------------------------------------------------------
@@ -115,10 +123,10 @@ void ofApp::control(eCtrlType ctrl, int value)
 //--------------------------------------------------------------
 void ofApp::initSenderMgr()
 {
-	senderMgr::GetInstance()->addSender(eCubeType::eCubeOne, "192.168.1.131", 8888);
-	senderMgr::GetInstance()->addSender(eCubeType::eCubeTwo, "127.0.0.1", 2233);
-	senderMgr::GetInstance()->addSender(eCubeType::eCubeThree, "127.0.0.1", 2233);
-	senderMgr::GetInstance()->addSender(eCubeType::eCubeFour, "127.0.0.1", 2233);
+	senderMgr::GetInstance()->addSender(eCubeType::eCubeOne, "127.0.0.1", 8888);
+	senderMgr::GetInstance()->addSender(eCubeType::eCubeTwo, "127.0.0.1", 8888);
+	senderMgr::GetInstance()->addSender(eCubeType::eCubeThree, "127.0.0.1", 8888);
+	senderMgr::GetInstance()->addSender(eCubeType::eCubeFour, "127.0.0.1", 8888);
 
 }
 
@@ -143,8 +151,8 @@ void ofApp::initCubeMgr()
 		eCubeType::eCubeOne,
 		200,
 		ofVec3f(0, -300, 0),
+		ofColor(0, 0, 255),
 		ofColor(255, 0, 0),
-		ofColor(255, 255, 0),
 		ofColor(255, 0, 255)
 	);
 
@@ -152,26 +160,26 @@ void ofApp::initCubeMgr()
 		eCubeType::eCubeTwo,
 		200,
 		ofVec3f(0, -100, 0),
-		ofColor(255, 0, 0),
-		ofColor(255, 255, 0),
-		ofColor(255, 0, 255)
+		ofColor(0, 0, 255),
+		ofColor(0, 255, 0),
+		ofColor(255, 255, 255)
 	);
 
 	cubeMgr::GetInstance()->add(
 		eCubeType::eCubeThree,
 		200,
 		ofVec3f(0, 100, 0),
+		ofColor(0, 0, 255),
 		ofColor(255, 0, 0),
-		ofColor(255, 255, 0),
-		ofColor(255, 0, 255)
+		ofColor(255, 255, 255)
 	);
 
 	cubeMgr::GetInstance()->add(
 		eCubeType::eCubeFour,
 		200,
 		ofVec3f(0, 300, 0),
-		ofColor(255, 0, 0),
-		ofColor(255, 255, 0),
+		ofColor(0, 0, 255),
+		ofColor(0, 255, 0),
 		ofColor(255, 0, 255)
 	);
 }

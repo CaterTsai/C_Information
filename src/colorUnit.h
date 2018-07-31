@@ -4,30 +4,19 @@
 
 
 //ColorUnit Parameter
-const int cColorLow = 75;
-const int cColorMiddles = 150;
-const int cColorHigh = 255;
-const float cColorBreatheSlow = 5.0f;
-const float cColorBreatheMiddle = 2.5f;
-const float cColorBreatheFast = 0.5f;
-const float cColorFlashSlow = 1.0f;
-const float cColorFlashFast = 0.2f;
+const int cColorMax = 255;
+const float cColorBreatheLimit = 0.5f;
+const float cColorFlashLimit = 0.2f;
 
 enum eColorType
 {
 	eCT_Off = 0,
-	eCT_OnLow,
-	eCT_OnMiddles,
-	eCT_OnHigh,
+	eCT_On,
+	eCT_FadeIn,
+	eCT_FadeOut,
 
-	eCT_BreatheSlow,
-	eCT_BreatheMiddle,
-	eCT_BreatheFast,
-	eCT_BreatheControl,
-
-	eCT_FlashSlow,
-	eCT_FlashFast,
-	eCT_FlashControl
+	eCT_Breathe,
+	eCT_Flash
 	
 };
 
@@ -49,16 +38,24 @@ public:
 	{
 		_animIntensity.update(delta);
 
-		if (_eType == eCT_BreatheSlow || _eType == eCT_BreatheMiddle || _eType == eCT_BreatheFast || _eType == eCT_BreatheControl)
+		if (_eType == eCT_FadeIn || _eType == eCT_FadeOut || _eType == eCT_Breathe)
 		{
 			_intensity = _animIntensity.getCurrentValue();
 
 			if (_animIntensity.hasFinishedAnimating() && !_isLoop)
 			{
-				_eType = eCT_Off;
+				if (_eType == eCT_FadeIn)
+				{
+					_eType = eCT_On;
+				}
+				else
+				{
+					_eType = eCT_Off;
+				}
+				
 			}
 		}		
-		else if (_eType == eCT_FlashSlow || _eType == eCT_FlashFast || _eType == eCT_FlashControl)
+		else if ( _eType == eCT_Flash)
 		{
 			_timer -= delta;
 			if (_timer < 0.0f )
@@ -84,59 +81,39 @@ public:
 			_intensity = 0;			
 			break;
 		}
-		case eCT_OnLow:
+		case eCT_On:
 		{
-			_intensity = cColorLow;
+			_intensity = MIN(MAX(t, 0), cColorMax);
 			break;
 		}
-		case eCT_OnMiddles:
+		case eCT_FadeIn:
 		{
-			_intensity = cColorMiddles;
+			float breatheT = MAX(cColorBreatheLimit, t);
+			//_intensity = 0;
+			_animIntensity.reset(0.0f);
+			_animIntensity.setDuration(breatheT);
+			_animIntensity.setRepeatType(AnimRepeat::PLAY_ONCE);
+			_animIntensity.animateFromTo(_intensity, cColorMax);
+			_isLoop = false;
 			break;
 		}
-		case eCT_OnHigh:
+		case eCT_FadeOut:
 		{
-			_intensity = cColorHigh;
+			float breatheT = MAX(cColorBreatheLimit, t);
+			//_intensity = cColorMax;
+			_animIntensity.reset(0.0f);
+			_animIntensity.setDuration(breatheT);
+			_animIntensity.setRepeatType(AnimRepeat::PLAY_ONCE);
+			_animIntensity.animateFromTo(_intensity, 0.0);
+			_isLoop = false;
 			break;
 		}
-		case eCT_BreatheSlow:
+		case eCT_Breathe:
 		{
+			float breatheT = MAX(cColorBreatheLimit, t);
 			_intensity = 0;
 			_animIntensity.reset(0.0f);
-			_animIntensity.setDuration(cColorBreatheSlow);
-			if (_isLoop)
-			{
-				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
-			}
-			else
-			{
-				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH_ONCE);
-			}
-			
-			_animIntensity.animateFromTo(0.0, 255);
-			break;
-		}
-		case eCT_BreatheMiddle:
-		{
-			_intensity = 0;
-			_animIntensity.reset(0.0f);
-			_animIntensity.setDuration(cColorBreatheMiddle);
-			if (_isLoop)
-			{
-				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
-			}
-			else
-			{
-				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH_ONCE);
-			}
-			_animIntensity.animateFromTo(0.0, 255);
-			break;
-		}
-		case eCT_BreatheFast:
-		{
-			_intensity = 0;
-			_animIntensity.reset(0.0f);
-			_animIntensity.setDuration(cColorBreatheFast);
+			_animIntensity.setDuration(breatheT);
 			if (_isLoop)
 			{
 				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
@@ -148,38 +125,11 @@ public:
 			_animIntensity.animateFromTo(0.0, 255);
 			break;
 		}
-		case eCT_BreatheControl:
+		case eCT_Flash:
 		{
+			float flashT = MAX(cColorFlashLimit, t);
 			_intensity = 0;
-			_animIntensity.reset(0.0f);
-			_animIntensity.setDuration(t);
-			if (_isLoop)
-			{
-				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH);
-			}
-			else
-			{
-				_animIntensity.setRepeatType(AnimRepeat::LOOP_BACK_AND_FORTH_ONCE);
-			}
-			_animIntensity.animateFromTo(0.0, 255);
-			break;
-		}
-		case eCT_FlashSlow:
-		{
-			_intensity = 0;
-			_timer = _flashTime = cColorFlashSlow;
-			break;
-		}
-		case eCT_FlashFast:
-		{
-			_intensity = 0;
-			_timer = _flashTime = cColorFlashFast;
-			break;
-		}
-		case eCT_FlashControl:
-		{
-			_intensity = 0;
-			_timer = _flashTime = t;
+			_timer = _flashTime = flashT;
 			break;
 		}
 		}

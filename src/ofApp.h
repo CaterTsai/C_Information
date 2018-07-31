@@ -17,6 +17,7 @@ public:
 	void keyPressed(int key);
 	void control(eCtrlType ctrl, int value = cMidiButtonPress);
 private:
+	bool _showMsg;
 	ofEasyCam _cam;
 	float _mainTimer;
 

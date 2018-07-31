@@ -36,13 +36,15 @@ public:
 private:
 	void triggerLight()
 	{
-		_timer = ofRandom(1.0, 3.0);
+		_timer = ofRandom(3.0, 5.0);
 		int c = rand() % cCubeNum;
 		int l = rand() % cColorNumEachUnit;
-		cubeMgr::GetInstance()->chagneColorType((eCubeType)c, l, eColorType::eCT_BreatheControl, _timer * ofRandom(1.0, 1.2), false);
-		_timer *= 2;
+		cubeMgr::GetInstance()->chagneColorType((eCubeType)c, l, eColorType::eCT_Breathe, _timer * ofRandom(1.0, 1.2), false);
+
+		_timer *= 2.0;
 	}
 
 private:
+	
 	float _timer;
 };

@@ -29,7 +29,12 @@ public:
 		}
 		ofPopStyle();
 	}
-
+	void allClose(float t) {
+		for (auto& iter : _cubeMgr)
+		{
+			iter.second.allClose(t);
+		}
+	}
 	void chagneColorType(eCubeType cType, int id, eColorType colorType, float t = 0.0f, bool isLoop = true)
 	{
 		if (_cubeMgr.find(cType) != _cubeMgr.end())

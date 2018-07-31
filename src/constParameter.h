@@ -13,6 +13,7 @@ enum eCubeType : int
 
 const int cColorNumEachUnit = 3;
 const int cCubeNum = 4;
+const int cBlueIndex = 0;
 
 
 const int cUdpSendLength = 4;
