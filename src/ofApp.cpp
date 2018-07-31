@@ -11,6 +11,8 @@ void ofApp::setup() {
 	initLightMesh();
 	initScene();
 	_mainTimer = ofGetElapsedTimef();
+
+	_showMsg = true;
 }
 
 //--------------------------------------------------------------
@@ -141,7 +143,7 @@ void ofApp::initScene()
 	_sceneMgr.push_back(ofPtr<sToBeContinued>(new sToBeContinued));
 	_sceneMgr.push_back(ofPtr<sEnding>(new sEnding));
 
-	_nowScene = eSIdle;
+	_nowScene = eSSimple;
 }
 
 //--------------------------------------------------------------

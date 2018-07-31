@@ -14,10 +14,9 @@ enum eColorType
 	eCT_On,
 	eCT_FadeIn,
 	eCT_FadeOut,
-
 	eCT_Breathe,
-	eCT_Flash
-	
+	eCT_Flash,
+	eCT_OnAndFadeout
 };
 
 class colorUnit {
@@ -38,7 +37,7 @@ public:
 	{
 		_animIntensity.update(delta);
 
-		if (_eType == eCT_FadeIn || _eType == eCT_FadeOut || _eType == eCT_Breathe)
+		if (_eType == eCT_FadeIn || _eType == eCT_FadeOut || _eType == eCT_Breathe || _eType == eCT_OnAndFadeout)
 		{
 			_intensity = _animIntensity.getCurrentValue();
 
@@ -130,6 +129,17 @@ public:
 			float flashT = MAX(cColorFlashLimit, t);
 			_intensity = 0;
 			_timer = _flashTime = flashT;
+			break;
+		}
+		case eCT_OnAndFadeout:
+		{
+			float breatheT = MAX(cColorBreatheLimit, t);
+			_intensity = cColorMax;
+			_animIntensity.reset(0.0f);
+			_animIntensity.setDuration(breatheT);
+			_animIntensity.setRepeatType(AnimRepeat::PLAY_ONCE);
+			_animIntensity.animateFromTo(_intensity, 0.0);
+			_isLoop = false;
 			break;
 		}
 		}

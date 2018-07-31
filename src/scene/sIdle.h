@@ -20,12 +20,19 @@ public:
 		}
 		
 	}
-	void drawMsg(ofVec2f pos) override {}
+	void drawMsg(ofVec2f pos) override 
+	{
+		ostringstream ss;
+		ss << "Idle\n";
+		ofDrawBitmapStringHighlight(ss.str(), pos);
+	}
 
 	void start() override
 	{
 		_isStart = true;
-		triggerLight();
+		cubeMgr::GetInstance()->allClose(1.0);
+		_timer = 1.0f;
+		//triggerLight();
 	};
 	void stop() override 
 	{
@@ -38,8 +45,7 @@ private:
 	{
 		_timer = ofRandom(3.0, 5.0);
 		int c = rand() % cCubeNum;
-		int l = rand() % cColorNumEachUnit;
-		cubeMgr::GetInstance()->chagneColorType((eCubeType)c, l, eColorType::eCT_Breathe, _timer * ofRandom(1.0, 1.2), false);
+		cubeMgr::GetInstance()->chagneColorType((eCubeType)c, 0, eColorType::eCT_Breathe, _timer * ofRandom(1.0, 1.2), false);
 
 		_timer *= 2.0;
 	}

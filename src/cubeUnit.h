@@ -52,7 +52,7 @@ public:
 		{
 			iter.setColorType(eColorType::eCT_FadeOut, false, t);
 		}
-	};
+	}
 	void setType(int id, eColorType type, bool isLoop, float t)
 	{
 		if (id >= 0 && id < _colorList.size())

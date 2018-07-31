@@ -10,9 +10,21 @@ public:
 	{}
 
 	void update(float delta) override {}
-	virtual void drawMsg(ofVec2f pos) override {}
+	void drawMsg(ofVec2f pos) override 
+	{
+		ostringstream ss;
+		ss << "Intro\n";
+		ofDrawBitmapStringHighlight(ss.str(), pos);
+	}
 
-	virtual void start() override {};
-	virtual void stop() override {};
+	void start() override 
+	{
+		_isStart = true;
+		cubeMgr::GetInstance()->allClose(1.0);
+	};
+	void stop() override 
+	{
+		_isStart = false;
+	};
 	virtual void control(eCtrlType ctrl, int value = cMidiButtonPress) override {};
 };
