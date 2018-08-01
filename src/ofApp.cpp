@@ -130,6 +130,10 @@ void ofApp::initSenderMgr()
 	senderMgr::GetInstance()->addSender(eCubeType::eCubeThree, "127.0.0.1", 8888);
 	senderMgr::GetInstance()->addSender(eCubeType::eCubeFour, "127.0.0.1", 8888);
 
+	//senderMgr::GetInstance()->addSender(eCubeType::eCubeOne, "192.168.1.200", 8888);
+	//senderMgr::GetInstance()->addSender(eCubeType::eCubeTwo, "192.168.1.201", 8888);
+	//senderMgr::GetInstance()->addSender(eCubeType::eCubeThree, "192.168.1.202", 8888);
+	//senderMgr::GetInstance()->addSender(eCubeType::eCubeFour, "192.168.1.203", 8888);
 }
 
 //--------------------------------------------------------------
@@ -143,7 +147,7 @@ void ofApp::initScene()
 	_sceneMgr.push_back(ofPtr<sToBeContinued>(new sToBeContinued));
 	_sceneMgr.push_back(ofPtr<sEnding>(new sEnding));
 
-	_nowScene = eSSimple;
+	_nowScene = eSHarmony;
 }
 
 //--------------------------------------------------------------
@@ -155,7 +159,7 @@ void ofApp::initCubeMgr()
 		ofVec3f(0, -300, 0),
 		ofColor(0, 0, 255),
 		ofColor(255, 0, 0),
-		ofColor(255, 0, 255)
+		ofColor(255, 255, 0)
 	);
 
 	cubeMgr::GetInstance()->add(
@@ -164,7 +168,7 @@ void ofApp::initCubeMgr()
 		ofVec3f(0, -100, 0),
 		ofColor(0, 0, 255),
 		ofColor(0, 255, 0),
-		ofColor(255, 255, 255)
+		ofColor(255, 255, 0)
 	);
 
 	cubeMgr::GetInstance()->add(
@@ -173,7 +177,7 @@ void ofApp::initCubeMgr()
 		ofVec3f(0, 100, 0),
 		ofColor(0, 0, 255),
 		ofColor(255, 0, 0),
-		ofColor(255, 255, 255)
+		ofColor(255, 255, 0)
 	);
 
 	cubeMgr::GetInstance()->add(
@@ -182,7 +186,7 @@ void ofApp::initCubeMgr()
 		ofVec3f(0, 300, 0),
 		ofColor(0, 0, 255),
 		ofColor(0, 255, 0),
-		ofColor(255, 0, 255)
+		ofColor(255, 255, 0)
 	);
 }
 

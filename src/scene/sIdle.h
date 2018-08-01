@@ -32,7 +32,6 @@ public:
 		_isStart = true;
 		cubeMgr::GetInstance()->allClose(1.0);
 		_timer = 1.0f;
-		//triggerLight();
 	};
 	void stop() override 
 	{

@@ -21,10 +21,24 @@ public:
 	{
 		_isStart = true;
 		cubeMgr::GetInstance()->allClose(1.0);
+
+		//for (int i = 0; i < 4; i++)
+		//{
+		//	for (int j = 0; j < 3; j++)
+		//	{
+		//		cubeMgr::GetInstance()->chagneColorType((eCubeType)i, j, eColorType::eCT_Breathe, ofRandom(1.0, 5.0));
+		//	}
+		//	
+		//}
+		
 	};
 	void stop() override 
 	{
 		_isStart = false;
 	};
-	virtual void control(eCtrlType ctrl, int value = cMidiButtonPress) override {};
+	
+	void control(eCtrlType ctrl, int value = cMidiButtonPress) override 
+	{
+
+	};
 };
