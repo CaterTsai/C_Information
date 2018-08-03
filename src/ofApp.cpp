@@ -8,8 +8,11 @@ void ofApp::setup() {
 	ofSetWindowPosition(0, 0);
 	initCubeMgr();
 	initSenderMgr();
-	initLightMesh();
 	initScene();
+
+	midiCtrl::GetInstance()->init();
+	midiCtrl::GetInstance()->addListener(this);
+
 	_mainTimer = ofGetElapsedTimef();
 
 	_showMsg = true;
@@ -24,6 +27,9 @@ void ofApp::update() {
 	senderMgr::GetInstance()->update(delta);
 	_sceneMgr[_nowScene]->update(delta);
 
+	updateMidi();
+
+	moveLight::GetInstance()->updateLight(delta);
 	ofSetWindowTitle(ofToString(ofGetFrameRate()));
 }
 
@@ -33,10 +39,7 @@ void ofApp::draw() {
 	_cam.begin();
 	cubeMgr::GetInstance()->draw();
 	_cam.end();
-
-	//_lightMesh.drawLight(0, 0);
-	//_lightMesh.drawPoint(0, 0);
-
+	
 	if (_showMsg)
 	{
 		ofSetColor(255);
@@ -58,6 +61,7 @@ void ofApp::keyPressed(int key) {
 	{
 		_sceneMgr[_nowScene]->control(type);
 	}
+		
 }
 
 //----------------------------------
@@ -147,7 +151,8 @@ void ofApp::initScene()
 	_sceneMgr.push_back(ofPtr<sToBeContinued>(new sToBeContinued));
 	_sceneMgr.push_back(ofPtr<sEnding>(new sEnding));
 
-	_nowScene = eSHarmony;
+	_nowScene = eSIdle;
+	_isStart = false;
 }
 
 //--------------------------------------------------------------
@@ -190,8 +195,39 @@ void ofApp::initCubeMgr()
 	);
 }
 
-void ofApp::initLightMesh()
+//void ofApp::initLightMesh()
+//{
+//	lightMesh::GetInstance()->init(1920, 900, 8, 4);
+//	_edit = false;
+//}
+
+//----------------------------------
+void ofApp::updateMidi()
 {
-	_lightMesh.init(1920, 900, 8, 4);
+	for (int i = 0; i < _midiQueue.size(); i++)
+	{
+		auto ctrl = _midiQueue.begin();
+		if (ctrl->type >= 0 && ctrl->type < eCtrl_GlobalNum)
+		{
+			control(ctrl->type, ctrl->value);
+		}
+		else
+		{
+			_sceneMgr[_nowScene]->control(ctrl->type, ctrl->value);
+		}
+		_midiQueue.pop_front();
+	}
 }
 
+//----------------------------------
+void ofApp::newMidiMessage(ofxMidiMessage & msg)
+{
+	if (msg.value == cMidiButtonPress)
+	{
+		midiCtrlData newCtrl;
+		newCtrl.type = ctrlMap::GetInstance()->midi2Ctrl[msg.control];
+		newCtrl.value = msg.value;
+		_midiQueue.push_back(newCtrl);
+	}
+
+}

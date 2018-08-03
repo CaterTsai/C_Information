@@ -9,25 +9,62 @@ public:
 		:sBase(eSChaos)
 	{}
 
-	void update(float delta) override {}
+	void update(float delta) override
+	{
+		if (!_isStart)
+		{
+			return;
+		}
+
+
+		if (_timer > 0)
+		{
+			_timer -= delta;
+
+			if (_timer < 0)
+			{
+				switch (_eMode)
+				{
+				case eClimbFast:
+				{
+					climbFast();
+					break;
+				}
+				case eAllRandom:
+				{
+					allRandom();
+					break;
+				}
+				}
+			}
+
+		}
+
+	}
 	void drawMsg(ofVec2f pos) override
 	{
 		ostringstream ss;
 		ss << "Chaos\n";
+		ss << "1:Close\n";
+		ss << "2:eBlueYellowFlash\n";
+		ss << "3:eAllRandom\n";
+		ss << "4:eAllFastFlash\n";
+		ss << "5:eClimbFast\n";
 		ofDrawBitmapStringHighlight(ss.str(), pos);
 	}
 
-	void start() override 
+	void start() override
 	{
 		_isStart = true;
 		_eMode = eBlueYellowFlash;
+		blueYellowFlash();
 	};
-	
-	void stop() override 
+
+	void stop() override
 	{
 		_isStart = false;
 	};
-	void control(eCtrlType ctrl, int value = cMidiButtonPress) override 
+	void control(eCtrlType ctrl, int value = cMidiButtonPress) override
 	{
 		if (_isStart && value == cMidiButtonPress)
 		{
@@ -47,7 +84,7 @@ public:
 			}
 			case eCtrl_ViewTrigger3:
 			{
-				_eMode = eCubeRandom;
+				_eMode = eAllRandom;
 				allRandom();
 				break;
 			}
@@ -68,7 +105,7 @@ public:
 	};
 
 private:
-	void blueYellowFlash(){
+	void blueYellowFlash() {
 		for (int i = 0; i < cCubeNum; i++)
 		{
 			cubeMgr::GetInstance()->chagneColorType((eCubeType)i, 0, eColorType::eCT_Flash, 0.5);
@@ -79,18 +116,34 @@ private:
 	void allRandom()
 	{
 		_timer = 1.0f;
+		for (int i = 0; i < cCubeNum; i++)
+		{
+			for (int j = 0; j < cColorNumEachUnit; j++)
+			{
+				if ((rand() % 10) <= 6)
+				{
+					cubeMgr::GetInstance()->chagneColorType((eCubeType)i, j, eColorType::eCT_OnAndFadeout, 0.5, false);
+				}
+			}
+		}
 	}
 
 	void allFastFlash()
 	{
-
+		for (int i = 0; i < cCubeNum; i++)
+		{
+			for (int j = 0; j < cColorNumEachUnit; j++)
+			{
+				cubeMgr::GetInstance()->chagneColorType((eCubeType)i, j, eColorType::eCT_Flash, ofRandom(0.5, 2.0));
+			}
+		}
 	}
 
 	void climbFast()
 	{
 		for (int i = 0; i < cColorNumEachUnit; i++)
 		{
-			cubeMgr::GetInstance()->chagneColorType((eCubeType)_climbIdx, i , eColorType::eCT_OnAndFadeout, 0.5, false);
+			cubeMgr::GetInstance()->chagneColorType((eCubeType)_climbIdx, i, eColorType::eCT_OnAndFadeout, 0.5, false);
 		}
 		_climbIdx = (_climbIdx + 1) % cCubeNum;
 		_timer = 0.2;

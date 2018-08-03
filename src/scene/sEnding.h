@@ -9,11 +9,22 @@ public:
 		:sBase(eSEnding)
 	{}
 
-	void update(float delta) override {}
-	virtual void drawMsg(ofVec2f pos) override {}
+	void drawMsg(ofVec2f pos) override 
+	{
+		ostringstream ss;
+		ss << "Ending\n";
+		ofDrawBitmapStringHighlight(ss.str(), pos);
+	}
 
-	virtual void start() override {};
-	virtual void stop() override {};
-	virtual void control(eCtrlType ctrl, int value = cMidiButtonPress) override {};
+	void start() override 
+	{
+		_isStart = true;
+		cubeMgr::GetInstance()->allClose(1.0);
+	};
+	void stop() override 
+	{
+		_isStart = false;
+	};
+	void control(eCtrlType ctrl, int value = cMidiButtonPress) override {};
 };
 

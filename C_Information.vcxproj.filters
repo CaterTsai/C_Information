@@ -199,6 +199,12 @@
     <ClCompile Include="src\lightMesh.cpp">
       <Filter>src\lightMesh</Filter>
     </ClCompile>
+    <ClCompile Include="src\moveLight.cpp">
+      <Filter>src\lightMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ofProjectionApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -559,6 +565,12 @@
     </ClInclude>
     <ClInclude Include="src\lightMesh.h">
       <Filter>src\lightMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="src\moveLight.h">
+      <Filter>src\lightMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ofProjectionApp.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

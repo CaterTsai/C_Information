@@ -3,11 +3,12 @@
 #include "constParameter.h"
 #include "cubeMgr.h"
 #include "lightMesh.h"
+#include "moveLight.h"
 #include "sceneMgr.h"
+#include "midiCtrl.h"
 
 
-
-class ofApp : public ofBaseApp{
+class ofApp : public ofBaseApp, public ofxMidiListener {
 
 public:
 	void setup();
@@ -41,11 +42,16 @@ public:
 	void initCubeMgr();
 #pragma endregion
 
-#pragma region lightMesh
+//Midi
 public:
-	void initLightMesh();
-private:
-	lightMesh _lightMesh;
-#pragma endregion
+	void updateMidi();
+	void newMidiMessage(ofxMidiMessage& msg) override;
 
+private:
+	struct midiCtrlData
+	{
+		eCtrlType type;
+		int value;
+	};
+	list<midiCtrlData> _midiQueue;
 };

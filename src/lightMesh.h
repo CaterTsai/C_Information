@@ -5,11 +5,7 @@
 class lightMesh
 {
 public:
-	lightMesh() 
-		:_colNum(0)
-		,_rowNum(0)
-		, _editMode(false)
-	{}
+
 	void init(int w, int h, int cols, int rows);
 	
 	void updateVector(int dx, int dy);
@@ -31,4 +27,28 @@ private:
 	int _editIdx;
 	ofMesh _mesh;
 	int _colNum, _rowNum;
+
+//-------------------
+//Singleton
+//-------------------
+private:
+	lightMesh()
+		:_colNum(0)
+		, _rowNum(0)
+		, _editMode(false)
+	{}
+	~lightMesh()
+	{
+		lightMesh::Destroy();
+	}
+	lightMesh(lightMesh const&);
+	void operator=(lightMesh const&);
+
+public:
+	static lightMesh* GetInstance();
+	static void Destroy();
+
+private:
+	static lightMesh *pInstance;
+
 };

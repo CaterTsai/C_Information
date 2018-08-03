@@ -184,6 +184,7 @@
     <ClCompile Include="src\lightMesh.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\midiCtrl.cpp" />
+    <ClCompile Include="src\moveLight.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatable.cpp" />
     <ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableFloat.cpp" />
@@ -236,6 +237,7 @@
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
+    <ClCompile Include="src\ofProjectionApp.cpp" />
     <ClCompile Include="src\senderMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +258,7 @@
     <ClInclude Include="src\cubeUnit.h" />
     <ClInclude Include="src\lightMesh.h" />
     <ClInclude Include="src\midiCtrl.h" />
+    <ClInclude Include="src\moveLight.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatable.h" />
     <ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableFloat.h" />
@@ -319,6 +322,7 @@
     <ClInclude Include="..\..\..\addons\ofxTrueTypeFontUC\src\ofxTrueTypeFontUC.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h" />
+    <ClInclude Include="src\ofProjectionApp.h" />
     <ClInclude Include="src\scene\sBase.h" />
     <ClInclude Include="src\scene\sceneMgr.h" />
     <ClInclude Include="src\scene\sChaos.h" />

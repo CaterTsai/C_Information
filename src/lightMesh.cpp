@@ -258,3 +258,23 @@ void lightMesh::keyPressed(ofKeyEventArgs & e)
 	}
 	}
 }
+
+//--------------------------------------------------------------
+lightMesh* lightMesh::pInstance = 0;
+lightMesh* lightMesh::GetInstance()
+{
+	if (pInstance == 0)
+	{
+		pInstance = new lightMesh();
+	}
+	return pInstance;
+}
+
+//--------------------------------------------------------------
+void lightMesh::Destroy()
+{
+	if (pInstance != 0)
+	{
+		delete pInstance;
+	}
+}

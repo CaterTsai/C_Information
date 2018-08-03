@@ -13,15 +13,7 @@ enum eCtrlType : int
 	, eCtrl_NextScence
 	, eCtrl_PrevScence
 	, eCtrl_GlobalNum
-
-	//scence
-	, eCtrl_Scence = 30
-	, eCtrl_Trigger
-	
-	, eCtrl_ViewSpeed
-	, eCtrl_ViewNext
-	, eCtrl_ViewPrev
-	, eCtrl_ScenceNum
+	, eCtrl_ChangeProjectAlpha
 
 	//View
 	, eCtrl_View = 60
@@ -34,9 +26,6 @@ enum eCtrlType : int
 	, eCtrl_ViewTrigger7
 	, eCtrl_ViewTrigger8
 	, eCtrl_ViewTrigger9
-	, eCtrl_ViewTrigger10
-	, eCtrl_ViewTrigger11
-	, eCtrl_ViewTrigger12
 	, eCtrl_ViewSlider1
 	, eCtrl_ViewSlider2
 	, eCtrl_ViewSlider3
